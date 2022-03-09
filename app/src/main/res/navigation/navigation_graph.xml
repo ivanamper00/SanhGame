@@ -9,5 +9,22 @@
         android:id="@+id/dashboardFragment"
         android:name="com.bigteeti.sanhgame.ui.fragment.DashboardFragment"
         android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/toDetails"
+            app:destination="@id/detailsFragment" >
+            <argument
+                android:name="content"
+                app:argType="string"/>
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.bigteeti.sanhgame.ui.fragment.DetailsFragment"
+        tools:layout="@layout/fragment_details"
+        android:label="DetailsFragment" >
+        <argument
+            android:name="content"
+            app:argType="string"/>
+    </fragment>
 </navigation>

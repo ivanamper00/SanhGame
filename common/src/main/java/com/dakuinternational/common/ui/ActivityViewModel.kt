@@ -3,6 +3,7 @@ package com.dakuinternational.common.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dakuinternational.common.data.repository.RepoImp
 import com.dakuinternational.common.domain.model.DataContent
 import com.dakuinternational.common.domain.model.Response
 import com.dakuinternational.common.domain.use_case.UseCases

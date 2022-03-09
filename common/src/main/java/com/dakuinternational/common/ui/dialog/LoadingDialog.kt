@@ -15,6 +15,7 @@ class LoadingDialog(context: Context): Dialog(context) {
         super.onCreate(savedInstanceState)
         binding = DialogLoadingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         setCancelable(false)
     }
 
@@ -26,4 +27,4 @@ class LoadingDialog(context: Context): Dialog(context) {
         )
         this.window?.setBackgroundDrawableResource(R.color.transparent)
     }
-}
+}   

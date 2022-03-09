@@ -8,6 +8,8 @@ import androidx.navigation.fragment.NavHostFragment
 import com.bigteeti.sanhgame.R
 import com.bigteeti.sanhgame.databinding.ActivityMainBinding
 import com.bigteeti.sanhgame.ui.adapter.DashboardAdapter
+import com.bigteeti.sanhgame.ui.fragment.DashboardFragment
+import com.bigteeti.sanhgame.ui.fragment.DashboardFragmentDirections
 import com.dakuinternational.common.domain.model.DataContent
 import com.dakuinternational.common.domain.model.Response
 import com.dakuinternational.common.ui.ActivityViewModel
@@ -19,7 +21,7 @@ import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), DashboardAdapter.OnItemClickListener  {
 
     private val binding by viewBinding(ActivityMainBinding::inflate)
 
@@ -48,21 +50,17 @@ class MainActivity : BaseActivity() {
                 }
             }
         }
-
-        sharedViewModel.uiEvent.observe(this){
-            when(it){
-                is AppEvent.Selected -> {}
-                else -> {
-                    // no-op
-                }
-            }
-        }
     }
 
     companion object{
         const val DATABASE_NAME = "black_jack"
 
         fun createIntent(context: Context) = Intent(context, MainActivity::class.java)
+    }
+
+    override fun onItemClick(data: DataContent) {
+        val direction = DashboardFragmentDirections.toDetails(Gson().toJson(data))
+        navController.navigate(direction)
     }
 
 

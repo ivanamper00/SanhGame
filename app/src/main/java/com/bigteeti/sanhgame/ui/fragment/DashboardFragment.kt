@@ -17,11 +17,11 @@ import com.dakuinternational.common.ui.utils.writeLog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DashboardFragment : BaseFragment(R.layout.fragment_dashboard), DashboardAdapter.OnItemClickListener {
+class DashboardFragment : BaseFragment(R.layout.fragment_dashboard){
 
     private val binding by viewBinding(FragmentDashboardBinding::bind)
 
-    private val adapter by lazy { DashboardAdapter(this) }
+    private val adapter by lazy { DashboardAdapter(requireActivity() as DashboardAdapter.OnItemClickListener ) }
 
     lateinit var sharedViewModel: SharedViewModel
 
@@ -31,12 +31,7 @@ class DashboardFragment : BaseFragment(R.layout.fragment_dashboard), DashboardAd
 
 
         sharedViewModel.uiEvent.observe(viewLifecycleOwner){
-            when(it){
-                is AppEvent.DataReceived -> adapter.setList(it.list)
-                else -> {
-                    //no-op
-                }
-            }
+            if(it is AppEvent.DataReceived) adapter.setList(it.list)
         }
 
         setupViews()
@@ -45,9 +40,6 @@ class DashboardFragment : BaseFragment(R.layout.fragment_dashboard), DashboardAd
     private fun setupViews() {
         binding.dashboardAdapter.adapter = adapter
         binding.dashboardAdapter.layoutManager = LinearLayoutManager(requireContext())
-    }
-
-    override fun onItemClick(data: DataContent) {
     }
 
 }

@@ -35,6 +35,7 @@ class DashboardAdapter(var onClick: OnItemClickListener) : RecyclerView.Adapter<
     override fun getItemCount(): Int = data.size
 
     fun setList(data: List<DataContent>){
+        this.data.clear()
         this.data.addAll(data)
         writeLog("Data Passed size [${this.data.size}]")
         notifyDataSetChanged()
