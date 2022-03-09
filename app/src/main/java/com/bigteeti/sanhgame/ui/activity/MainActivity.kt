@@ -1,6 +1,7 @@
 package com.bigteeti.sanhgame.ui.activity
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -15,6 +16,7 @@ import com.dakuinternational.common.domain.model.Response
 import com.dakuinternational.common.ui.ActivityViewModel
 import com.dakuinternational.common.ui.base.BaseActivity
 import com.dakuinternational.common.ui.binding.viewBinding
+import com.dakuinternational.common.ui.dialog.AlertUtils
 import com.dakuinternational.common.ui.utils.showToast
 import com.dakuinternational.common.ui.utils.writeLog
 import com.google.gson.Gson
@@ -63,5 +65,16 @@ class MainActivity : BaseActivity(), DashboardAdapter.OnItemClickListener  {
         navController.navigate(direction)
     }
 
+
+    override fun onBackPressed() {
+        if(navHostFragment.childFragmentManager.backStackEntryCount == 0) {
+            AlertUtils.alertExit(this){ p0, p1 ->
+                when(p1){
+                    DialogInterface.BUTTON_POSITIVE -> super.onBackPressed()
+                    else ->  p0.dismiss()
+                }
+            }.show()
+        }else super.onBackPressed()
+    }
 
 }
