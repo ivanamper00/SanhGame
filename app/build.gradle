@@ -7,6 +7,20 @@ plugins {
 }
 
 android {
+
+    lintOptions {
+        disable "Instantiatable"
+    }
+    
+    signingConfigs {
+        release {
+            storeFile file('D:\\Ivan\\Projects\\BTInternational\\SanhGame\\sanhgame.jks')
+            storePassword 'sanhgame'
+            keyAlias 'sanhgame'
+            keyPassword 'sanhgame'
+        }
+    }
+
     compileSdk 32
 
     defaultConfig {
@@ -26,6 +40,7 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
@@ -60,7 +75,7 @@ dependencies {
     implementation "android.arch.lifecycle:viewmodel:1.1.1"
 
     implementation(project(":common"))
-    implementation(project(":yqcbee"))
+    implementation 'com.github.ivanamper00:TalonNiDaku:1.0.5'
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.12.0'

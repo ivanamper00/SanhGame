@@ -3,6 +3,7 @@ pluginManagement {
         gradlePluginPortal()
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
         mavenCentral()
     }
 }
@@ -11,10 +12,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         jcenter()
+        maven { url 'https://jitpack.io' }
         mavenCentral()
     }
 }
 rootProject.name = "sanhgame"
 include ':app'
 include ':common'
-include ':yqcbee'
